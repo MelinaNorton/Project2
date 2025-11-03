@@ -18,25 +18,26 @@ void HeapSortStrategy<T>::heapify(std::vector<T>&v, int root, int size){
     int leftChild = 2 * root + 1; 
     int rightChild = 2 * root + 2;
 
-    if(root < size && v[leftChild] > v[largest]){largest = leftChild;}
-    if(root < size && v[rightChild] > v[largest]){largest = rightChild;}
+    if(leftChild < size && v[leftChild] > v[largest]){largest = leftChild;}
+    if(rightChild < size && v[rightChild] > v[largest]){largest = rightChild;}
 
     if(largest != root){
-        swap(v[root], v[largest]);
-        heapify(v, size, largest)
+        std::swap(v[root], v[largest]);
+        heapify(v, largest, size);
     }
-}
+};
 
 template<typename T>
 void HeapSortStrategy<T>::sort(std::vector<T>&v){
     //sort logic
-    for (int i = n/2 - 1; i >= 0; --i){
-        heapify(arr, n, i);
+    int size = v.size();
+    for (int i = size/2 - 1; i >= 0; --i){
+        heapify(v, i, size);
     }
 
-    for(int i= n-1; i>0; i--){
-        swap(v[0], v[i]);
-        heapify(v, i, 0);
+    for(int i= size-1; i>0; i--){
+        std::swap(v[0], v[i]);
+        heapify(v, 0, i);
     }
 }
 #endif

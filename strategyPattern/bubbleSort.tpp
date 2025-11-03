@@ -10,7 +10,7 @@ class BubbleSortStrategy : public SortStrategy<T>{
 
 template<typename T>
 void BubbleSortStrategy<T>::sort(std::vector<T>&v){
-    int size = v.size()
+    int size = v.size();
     bool swapped = false;
 
     for(int i=0; i<size-1; i++){

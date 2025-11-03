@@ -7,29 +7,30 @@ class QuickSortStrategy : public SortStrategy<T>{
     public:
         void sort(std::vector<T>& v) override;
     private:
-        void partition(std::vector<T>&v, int low, int high);
+        int partitionLomuto(std::vector<T>&v, int low, int high);
         void quickSortHelper(std::vector<T>&v, int low, int high);
 };
 
 template<typename T>
-void QuickSortStrategy<T>::partition(std::vector<T>&v, int low, int high){
-    //lomuto partition login
-    int size = v.size();
-    int pivot = v[n-1];
-    
-    for(int j=0; j<size; j++){
-        if(v[j]<pivot){i++; std::swap(v[j], v[pivot]);}
+int QuickSortStrategy<T>::partitionLomuto(std::vector<T>&v, int low, int high){
+    //lomuto partition logic
+    const T& pivot = v[high];
+    int i = low-1;
+
+    for(int j=low; j<high; j++){
+        if(v[j]<pivot){++i; std::swap(v[i], v[j]);}
     }
-    swap(v[i+1], v[j]);
+    std::swap(v[i+1], v[high]);
+    return i+1;
 }
 
 template<typename T>
 void QuickSortStrategy<T>::quickSortHelper(std::vector<T>&v, int low, int high){
     //actual sort logic
     if(low>=high){return;}
-    int partition = partition(v, low, high);
-    quickSortHelper(v, low, partition-1);
-    quickSortHelper(v, partition+1, high);
+    int part = partitionLomuto(v, low, high);
+    quickSortHelper(v, low, part-1);
+    quickSortHelper(v, part+1, high);
 }
 
 template<typename T>
