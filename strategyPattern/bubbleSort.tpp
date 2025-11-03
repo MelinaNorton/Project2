@@ -9,7 +9,15 @@ class BubbleSortStrategy : public SortStrategy<T>{
 };
 
 template<typename T>
-void SortStrategy<T>::sort(std::vector<T>&v){
-    //sort logic
+void BubbleSortStrategy<T>::sort(std::vector<T>&v){
+    int size = v.size()
+    bool swapped = false;
+
+    for(int i=0; i<size-1; i++){
+        for(int j=0; j<size-i-1; j++){
+            if(v[j]>v[j+1]){std::swap(v[j], v[j+1]); swapped = true;}
+        }
+        if(!swapped){break;}
+    }
 }
 #endif
