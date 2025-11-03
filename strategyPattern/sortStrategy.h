@@ -4,8 +4,9 @@
 
 template <typename T>
 class SortStrategy{
-    SortStrategy() = default;
-    virtual void sort(std::vector<T>&v) = 0;
-    virtual ~SortStrategy() = default
+    public:
+        SortStrategy() = default;
+        virtual void sort(std::vector<T>&v) = 0;
+        virtual ~SortStrategy() = default;
 };
 #endif

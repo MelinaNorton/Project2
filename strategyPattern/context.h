@@ -5,7 +5,7 @@
 template <typename T>
 class StrategySortContext{
     public:
-        StrategySortContext(HeapStrategy<T>* s) : sortStrategy(s) {}
+        StrategySortContext(SortStrategy<T>* s) : sortStrategy(s) {}
         void setStrategy(SortStrategy<T>* s) { sortStrategy = s; }
         void sortVec(std::vector<T>& vec) {
             sortStrategy->sort(vec); 
